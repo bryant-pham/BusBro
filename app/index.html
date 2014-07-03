@@ -60,7 +60,7 @@
         </style>
     </head>
     <body>
-        <div ng-controller="purpleCtrl" class="container-fluid purple animate-switch-container" ng-switch on="route">
+        <div ng-controller="purpleCtrl" class="container-fluid purple animate-switch-container">
             <nav class="navbar" role="navigation">
                 <button type="button" class="btn btn-default btn-sm" ng-click="lastRoute()">
                     <span class="glyphicon glyphicon-arrow-left"></span>
@@ -70,34 +70,16 @@
                     <span class="glyphicon glyphicon-arrow-right"></span>
                 </button>
             </nav>
-            <div ng-switch-when="mcgovern" class="animate-switch">
-                <ul>
-                    <li ng-repeat="time in purpleMcgovern">
+            <div class="animate-switch" ng-repeat="(routeName, routeData) in data">
+                {{routeName}}
+                <ul ng-repeat="(locationName, locationData) in routeData">
+                    {{locationName}}
+                    <li ng-repeat="time in locationData">
                         {{time}}
                     </li>
                 </ul>
             </div>
-            <div ng-switch-when="bcmMain" class="animate-switch">
-                <ul>
-                    <li ng-repeat="time in purpleBcmMain">
-                        {{time}}
-                    </li>
-                </ul>
-            </div>
-            <div ng-switch-when="jamail" class="animate-switch">
-                <ul>
-                    <li ng-repeat="time in purpleJamail">
-                        {{time}}
-                    </li>
-                </ul>
-            </div>
-            <div ng-switch-when="bcmMedCenter" class="animate-switch">
-                <ul>
-                    <li ng-repeat="time in purpleBcmMedCenter">
-                        {{time}}
-                    </li>
-                </ul>
-            </div>
+            
         </div>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
