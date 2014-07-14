@@ -44,9 +44,10 @@
         <!-- build:css styles/components/main.min.css -->
         <link rel="stylesheet" href="styles/h5bp.css">
         <!-- endbuild -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+        
         <script src="scripts/app.js"></script>
         
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -60,24 +61,20 @@
         </style>
     </head>
     <body>
-        <div ng-controller="purpleCtrl" class="container-fluid purple animate-switch-container">
+        <div ng-controller="busBroCtrl" class="container-fluid purple animate-switch-container">
             <nav class="navbar" role="navigation">
-                <button type="button" class="btn btn-default btn-sm" ng-click="lastRoute()">
-                    <span class="glyphicon glyphicon-arrow-left"></span>
-                </button>
-                {{route}}
-                <button type="button" class="btn btn-default btn-sm" ng-click="nextRoute()">
-                    <span class="glyphicon glyphicon-arrow-right"></span>
-                </button>
+                <select ng-model="currentRoute" ng-options="key as key for (key, value) in data"></select>
             </nav>
-            <div class="animate-switch" ng-repeat="(routeName, routeData) in data">
+            <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
                 {{routeName}}
-                <ul ng-repeat="(locationName, locationData) in routeData">
-                    {{locationName}}
-                    <li ng-repeat="time in locationData">
-                        {{time}}
-                    </li>
-                </ul>
+                <div>
+                    <ul ng-repeat="(locationName, locationData) in routeData" ng-show="currentLocation == locationName">
+                        {{locationName}}
+                        <li ng-repeat="time in locationData">
+                            {{time}}
+                        </li>
+                    </ul>
+                </div>
             </div>
             
         </div>

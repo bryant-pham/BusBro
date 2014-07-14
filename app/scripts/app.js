@@ -1,27 +1,37 @@
+'use strict';
+
 var busBroApp = angular.module('busBroApp', []);
-busBroApp.controller('purpleCtrl', function($scope, $http) {
+busBroApp.controller('busBroCtrl', function($scope, $http) {
+
 	$scope.init = function() {
 		$http.get('scripts/schedule.json').success(function(data) {
+			$scope.routes = [];
+			$scope.locations = [];
 			$scope.data = data;
+			setRoutesAndLocationsArray($scope.data);
+
+			$scope.currentLocation = $scope.locations[0];
+			$scope.currentRoute = $scope.routes[0];
 		});
-	}
-	
+	};
 
-	$scope.nextRoute = function() {
-		if($scope.routePos == ($scope.keys.length-1))
-			$scope.routePos = 0;
-		else
-			$scope.routePos++;
-		$scope.route = $scope.keys[$scope.routePos];
-	}
+	$scope.getLocationFromArray = function(index) {
+		return $scope.locations[index];
+	};
 
-	$scope.lastRoute = function() {
-		if($scope.routePos == 0)
-			$scope.routePos = ($scope.keys.length-1);
-		else
-			$scope.routePos--;
-		$scope.route = $scope.keys[$scope.routePos];
-	}
+	$scope.getRouteFromArray = function(index) {
+		return $scope.routes[index];
+	};
+
+	var setRoutesAndLocationsArray = function(data) {
+		angular.forEach(data, function(routeValues, route) {
+			$scope.routes.push(route);
+			angular.forEach(routeValues, function(locationValues, location) {
+				$scope.locations.push(location);
+			});
+		});
+	};
+
 	$scope.init();
 });
 
