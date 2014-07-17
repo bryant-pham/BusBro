@@ -63,7 +63,8 @@
     <body>
         <div ng-controller="busBroCtrl" class="container-fluid purple animate-switch-container">
             <nav class="navbar" role="navigation">
-                <select ng-model="currentRoute" ng-options="key as key for (key, value) in data"></select>
+                <select ng-model="currentRoute" ng-options="key as key for (key, value) in data"></select></br>
+                <select ng-model="currentLocation" ng-options="key as key for (key, value) in data[currentRoute]"></select>
             </nav>
             <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
                 {{routeName}}
