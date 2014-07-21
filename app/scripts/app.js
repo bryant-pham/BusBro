@@ -3,34 +3,29 @@
 var busBroApp = angular.module('busBroApp', []);
 busBroApp.controller('busBroCtrl', function($scope, $http) {
 
+	$scope.currentRoute;
+	$scope.currentLocation;
+
 	$scope.init = function() {
 		$http.get('scripts/schedule.json').success(function(data) {
-			$scope.routes = [];
-			$scope.locations = [];
 			$scope.data = data;
-			setRoutesAndLocationsArray($scope.data);
 
-			$scope.currentLocation = $scope.locations[0];
-			$scope.currentRoute = $scope.routes[0];
+			$scope.currentRoute = initRoute($scope.data);
+			$scope.currentLocation = initLocation($scope.currentRoute);	
 		});
 	};
 
-	$scope.getLocationFromArray = function(index) {
-		return $scope.locations[index];
-	};
+	$scope.refreshLocationOnRouteChange = function() {
+		$scope.currentLocation = initLocation($scope.currentRoute);
+	}
 
-	$scope.getRouteFromArray = function(index) {
-		return $scope.routes[index];
-	};
+	var initRoute = function(data) {
+		return Object.keys(data)[0];
+	}
 
-	var setRoutesAndLocationsArray = function(data) {
-		angular.forEach(data, function(routeValues, route) {
-			$scope.routes.push(route);
-			angular.forEach(routeValues, function(locationValues, location) {
-				$scope.locations.push(location);
-			});
-		});
-	};
+	var initLocation = function(route) {
+		return Object.keys($scope.data[route])[0];
+	}
 
 	$scope.init();
 });
