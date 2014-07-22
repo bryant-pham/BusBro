@@ -64,14 +64,14 @@
         <div ng-controller="busBroCtrl" class="container-fluid purple animate-switch-container">
             <nav class="navbar" role="navigation">
                 <select ng-model="currentRoute" ng-options="key as key for (key, value) in data" ng-change="refreshLocationOnRouteChange()"></select></br>
-                <select ng-model="currentLocation" ng-options="key as key for (key, value) in data[currentRoute]"></select>
+                <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]"></select>
             </nav>
             <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
                 {{routeName}}
                 <div>
-                    <ul ng-repeat="(locationName, locationData) in routeData" ng-show="currentLocation == locationName">
-                        {{locationName}}
-                        <li ng-repeat="time in locationData">
+                    <ul ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
+                        {{locationData.name}}
+                        <li ng-repeat="time in locationData.times">
                             {{time}}
                         </li>
                     </ul>
