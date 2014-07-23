@@ -58,10 +58,18 @@
             .purple {
                 background-color: #B8A2F5;
             }
+
+            .red {
+                background-color: #F73441;
+            }
+
+            .blue {
+                background-color: #7878FF;
+            }
         </style>
     </head>
     <body>
-        <div ng-controller="busBroCtrl" class="container-fluid purple animate-switch-container">
+        <div ng-controller="busBroCtrl" class="container-fluid animate-switch-container" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
             <nav class="navbar" role="navigation">
                 <select ng-model="currentRoute" ng-options="key as key for (key, value) in data" ng-change="refreshLocationOnRouteChange()"></select></br>
                 <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]"></select>
