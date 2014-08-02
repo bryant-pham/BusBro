@@ -98,7 +98,7 @@ gulp.task('html', function () {
         // Remove Any Unused CSS
         // Note: If not using the Style Guide, you can delete it from
         // the next line to only include styles your project uses.
-        .pipe($.if('*.css', $.uncss({ html: ['app/index.html','app/styleguide/index.html'] })))
+        .pipe($.if('*.css', $.uncss({ html: ['app/index.html'] })))
         .pipe($.useref.restore())
         .pipe($.useref())
         // Update Production Style Guide Paths
