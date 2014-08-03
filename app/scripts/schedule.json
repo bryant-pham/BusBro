@@ -45,7 +45,7 @@
 		{
 			"name":"BCM Medical Center",
 			"destination":"VA Medical Center",
-			"times":["6:57 AM", "7:29 AM", "8:05 AM", "", "4:56", "5:33 PM"]
+			"times":["6:57 AM", "7:29 AM", "8:05 AM", "", "4:56 PM", "5:33 PM"]
 		},
 		{
 			"name":"VA Medical Center",

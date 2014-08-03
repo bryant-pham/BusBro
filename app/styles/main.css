@@ -51,3 +51,7 @@ ul {
 .strike {
   text-decoration: line-through;
 }
+
+.highlight {
+	background-color: #FFFF00;
+}

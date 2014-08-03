@@ -70,7 +70,7 @@
                         <div ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
                             <ul class="list-unstyled">
                                 <li ng-repeat="time in locationData.times">
-                                    <div ng-class="{strike: strikeThroughOldTimes(time)}">{{time}}</div>
+                                    <span ng-class="{strike: strikeThroughOldTimes(time), highlight: !strikeThroughOldTimes(time)}">{{time}}</span>
                                 </li>
                             </ul>
                             <div id="destination">
