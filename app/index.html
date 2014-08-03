@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta http-equiv="cleartype" content="on">
         <title></title>
 
@@ -41,8 +41,6 @@
         <!--
         <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
         -->
-        <!-- build:css styles/components/main.min.css -->
-        <link rel="stylesheet" href="styles/h5bp.css">
         <!-- endbuild -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -51,41 +49,31 @@
         <script src="scripts/app.js"></script>
         
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <style>
-            ul {
-                list-style-type: none;
-            }
-            .purple {
-                background-color: #B8A2F5;
-            }
-
-            .red {
-                background-color: #F73441;
-            }
-
-            .blue {
-                background-color: #7878FF;
-            }
-        </style>
+        <link rel="stylesheet" href="styles/main.css">
     </head>
-    <body>
-        <div ng-controller="busBroCtrl" class="container-fluid animate-switch-container" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
-            <nav class="navbar" role="navigation">
-                <select ng-model="currentRoute" ng-options="key as key for (key, value) in data" ng-change="refreshLocationOnRouteChange()"></select></br>
-                <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]"></select>
-            </nav>
-            <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
-                {{routeName}}
-                <div>
-                    <ul ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
-                        {{locationData.name}}
-                        <li ng-repeat="time in locationData.times">
-                            {{time}}
-                        </li>
-                    </ul>
+    <body ng-controller="busBroCtrl" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
+        <nav class="navbar navbar-fixed-top logo"><div class="container">BusBro<div></nav>
+        <div class="container-fluid" >
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="form-group selectBars">
+                        <select ng-model="currentRoute" ng-options="key as key for (key, value) in data" ng-change="refreshLocationOnRouteChange()" class="form-control"></select>
+                        <br>
+                        <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]" class="form-control"></select>
+                    </div>
+                    <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
+                        <div>
+                            <ul ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
+                                <li ng-repeat="time in locationData.times">
+                                    {{time}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-4"></div>
             </div>
-            
         </div>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
