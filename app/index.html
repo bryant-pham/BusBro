@@ -52,7 +52,11 @@
         <link rel="stylesheet" href="styles/main.css">
     </head>
     <body ng-controller="busBroCtrl" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
-        <nav class="navbar navbar-fixed-top logo"><div class="container">BusBro<div></nav>
+        <nav class="navbar navbar-fixed-top logo">
+            <div class="container">
+                BusBro
+            <div>
+        </nav>
         <div class="container-fluid" >
             <div class="row">
                 <div class="col-md-4"></div>
@@ -63,12 +67,15 @@
                         <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]" class="form-control"></select>
                     </div>
                     <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
-                        <div>
-                            <ul ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
+                        <div ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
+                            <ul class="list-unstyled">
                                 <li ng-repeat="time in locationData.times">
-                                    {{time}}
+                                    <div ng-class="{strike: strikeThroughOldTimes(time)}">{{time}}</div>
                                 </li>
                             </ul>
+                            <div id="destination">
+                                <div id="destinationLink" ng-click="goToNextLocation(locationData.destination)">Departs to: {{locationData.destination}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
