@@ -8,8 +8,8 @@ ul {
     -moz-column-count: 2;
     column-count: 2;
     text-align: center;
-    padding-left: 0px;
     font-size: 1.3em;
+    height: 301px;
 }
 
 .purple {
@@ -24,11 +24,6 @@ ul {
     background-color: #5487FF;
 }
 
-.center {
-	width: 50%;
-    margin: 0 auto;
-}
-
 .navbar {
 
 	text-align: center;
@@ -41,4 +36,18 @@ ul {
 
 .logo {
 	font-size: 2em;
+}
+
+#destination {
+	text-align: center;
+	font-size: 1.3em;
+	cursor: pointer;
+}
+
+#destinationLink {
+	color: #FFFFFF;
+}
+
+.strike {
+  text-decoration: line-through;
 }
