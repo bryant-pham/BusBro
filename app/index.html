@@ -49,9 +49,10 @@
         <script src="scripts/app.js"></script>
         
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300">
         <link rel="stylesheet" href="styles/main.css">
     </head>
-    <body ng-controller="busBroCtrl" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
+    <body ng-controller="busBroCtrl">
         <nav class="navbar navbar-fixed-top logo">
             <div class="container">
                 BusBro
@@ -66,7 +67,7 @@
                         <br>
                         <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]" class="form-control"></select>
                     </div>
-                    <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName">
+                    <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName" class="timesTable" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
                         <div ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
                             <ul class="list-unstyled">
                                 <li ng-repeat="time in locationData.times">

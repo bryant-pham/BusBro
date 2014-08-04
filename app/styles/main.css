@@ -1,5 +1,7 @@
 body {
 	padding-top: 50px;
+    background-color: #F5F5F5;
+    font-family: 'Lato';
 }
 
 ul {
@@ -13,15 +15,15 @@ ul {
 }
 
 .purple {
-    background-color: #B8A2F5;
+    border-color: #B8A2F5;
 }
 
 .red {
-    background-color: #FF5252;
+    border-color: #FF5252;
 }
 
 .blue {
-    background-color: #5487FF;
+    border-color: #5487FF;
 }
 
 .navbar {
@@ -45,7 +47,7 @@ ul {
 }
 
 #destinationLink {
-	color: #FFFFFF;
+	color: blue;
 }
 
 .strike {
@@ -54,4 +56,10 @@ ul {
 
 .highlight {
 	background-color: #FFFF00;
+}
+
+.timesTable {
+    border-width: 3px;
+    border-style: solid;
+    padding: 15px 0px;
 }
