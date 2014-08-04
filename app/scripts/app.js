@@ -24,7 +24,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		$scope.currentLocation = location;
 	};
 
-	$scope.strikeThroughOldTimes = function(timeString) {
+	$scope.hasTimePassed = function(timeString) {
 		var currentDate = new Date();
 		var currentHours = currentDate.getHours();
   		var currentMinutes = currentDate.getMinutes();

@@ -51,11 +51,11 @@ ul {
 }
 
 .strike {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 .highlight {
-	background-color: #FFFF00;
+    font-weight: bold;
 }
 
 .timesTable {
