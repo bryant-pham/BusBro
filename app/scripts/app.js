@@ -5,6 +5,15 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 
 	$scope.currentRoute = null;
 	$scope.currentLocation = null;
+	$scope.destinationLocation = null;
+	$scope.locations = [
+		'McGovern', 
+		'BCM Main', 
+		'Jamail', 
+		'BCM Medical Center', 
+		'Baylor Clinic', 
+		'VA Medical Center'
+	];
 
 	$scope.init = function() {
 		$http.get('scripts/schedule.json').success(function(data) {

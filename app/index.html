@@ -63,9 +63,9 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <div class="form-group selectBars">
-                        <select ng-model="currentRoute" ng-options="key as key for (key, value) in data" ng-change="refreshLocationOnRouteChange()" class="form-control"></select>
+                        <select ng-init="currentLocation = locations[0]" ng-model="currentLocation" ng-options="location for location in locations" class="form-control"></select>
                         <br>
-                        <select ng-model="currentLocation" ng-options="location.name as location.name for location in data[currentRoute]" class="form-control"></select>
+                        <select ng-init="destinationLocation = locations[1]" ng-model="destinationLocation" ng-options="location for location in locations" class="form-control"></select>
                     </div>
                     <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName" class="timesTable" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
                         <div ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
