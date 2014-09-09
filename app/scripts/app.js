@@ -2,9 +2,9 @@
 
 var busBroApp = angular.module('busBroApp', []);
 busBroApp.controller('busBroCtrl', function($scope, $http) {
-
-	$scope.currentRoute = null;
-	$scope.currentLocation = null;
+	$scope.currentRoute        = null;
+	$scope.transferRoute       = null;
+	$scope.currentLocation     = null;
 	$scope.destinationLocation = null;
 	$scope.locations = [
 		'McGovern', 
@@ -18,19 +18,44 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.init = function() {
 		$http.get('scripts/schedule.json').success(function(data) {
 			$scope.data = data;
-
 			$scope.currentRoute = initRoute($scope.data);
-			$scope.currentLocation = initLocation($scope.currentRoute);
-
+			$scope.transferRoute = initRoute($scope.data);
 		});
 	};
 
 	$scope.refreshLocationOnRouteChange = function() {
-		$scope.currentLocation = initLocation($scope.currentRoute);
+		if($scope.data.Purple[$scope.currentLocation] && $scope.data.Purple[$scope.destinationLocation]) {
+			$scope.transferRoute = 'Purple';
+			$scope.currentRoute  = 'Purple';
+			return; 
+		} else if($scope.data.Blue[$scope.currentLocation] && $scope.data.Blue[$scope.destinationLocation]) {
+			$scope.transferRoute = 'Blue';
+			$scope.currentRoute  = 'Blue';
+			return; 
+		}
+
+		if(!($scope.data[$scope.currentRoute][$scope.currentLocation])) {
+			if($scope.currentRoute === 'Purple') {
+				$scope.currentRoute = 'Blue';
+			} else {
+				$scope.currentRoute = 'Purple';
+			}
+		}
+
+		if(!($scope.data[$scope.currentRoute][$scope.destinationLocation])) {
+			if($scope.currentRoute === 'Purple') {
+				$scope.transferRoute = 'Blue';
+			} else {
+				$scope.transferRoute = 'Purple';
+			}
+		}
+
+		console.log('From: ' + $scope.currentRoute);
+		console.log('To: ' + $scope.transferRoute);
 	};
 
 	$scope.goToNextLocation = function(location) {
-		$scope.currentLocation = location;
+		//$scope.currentLocation = location;
 	};
 
 	$scope.hasTimePassed = function(timeString) {
@@ -61,10 +86,6 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 
 	var initRoute = function(data) {
 		return Object.keys(data)[0];
-	};
-
-	var initLocation = function(route) {
-		return $scope.data[route][0].name;
 	};
 
 	$scope.init();
