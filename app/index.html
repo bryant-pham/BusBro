@@ -76,9 +76,9 @@
                             </li>
                         </ul>
                         <div id="routeContainer">
-                            <div class="circle leftCircle" ng-click="changeLocation(currentLocation)"></div>
-                            <div class="circle middleCircle" ng-show="currentRoute != transferRoute"></div>
-                            <div class="circle rightCircle" ng-click="changeLocation(destinationLocation)"></div>
+                            <div class="circle leftCircle" ng-class="{purpleCircle: currentRoute == 'Purple', redCircle: currentRoute == 'Red', blueCircle: currentRoute == 'Blue'}" ng-click="changeLocation(currentLocation)"></div>
+                            <div class="circle middleCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-show="currentRoute != transferRoute"></div>
+                            <div class="circle rightCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-click="changeLocation(destinationLocation)"></div>
                         </div>
                     </div>
                     

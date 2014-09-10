@@ -71,7 +71,6 @@ ul {
     position: absolute;
     margin-top: 30px;
     margin-bottom: 5px;
-    background: #B8A2F5;
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -89,6 +88,18 @@ ul {
 
 .middleCircle {
     left: 250px;
+}
+
+.purpleCircle {
+    background: #B8A2F5;
+}
+
+.blueCircle {
+    background: #5487FF;
+}
+
+.redCircle {
+    background: #FF5252;
 }
 
 #displayedLocationName {
