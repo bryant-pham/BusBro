@@ -67,18 +67,21 @@
                         <br>
                         <select ng-init="destinationLocation = locations[1]" ng-model="destinationLocation" ng-options="location for location in locations" class="form-control" ng-change="refreshLocationOnRouteChange()"></select>
                     </div>
-                    <div ng-repeat="(routeName, routeData) in data" ng-show="currentRoute == routeName" class="timesTable" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
-                        <div ng-repeat="locationData in routeData" ng-show="currentLocation == locationData.name">
-                            <ul class="list-unstyled">
-                                <li ng-repeat="time in locationData.times">
-                                    <span ng-class="{strike: hasTimePassed(time), highlight: !hasTimePassed(time)}">{{time}}</span>
-                                </li>
-                            </ul>
-                            <div id="destination">
-                                <div id="destinationLink" ng-click="goToNextLocation(locationData.destination)">Departs to: {{locationData.destination}}</div>
-                            </div>
+                    
+                    <div class="timesTable" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
+                    	<div id="displayedLocationName">{{displayedLocationName}}</div>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="time in model.times">
+                                <span ng-class="{strike: hasTimePassed(time), highlight: !hasTimePassed(time)}">{{time}}</span>
+                            </li>
+                        </ul>
+                        <div id="routeContainer">
+                            <div class="circle leftCircle" ng-click="changeLocation(currentLocation)"></div>
+                            <div class="circle middleCircle" ng-show="currentRoute != transferRoute"></div>
+                            <div class="circle rightCircle" ng-click="changeLocation(destinationLocation)"></div>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="col-md-4"></div>
             </div>

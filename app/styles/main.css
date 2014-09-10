@@ -62,4 +62,35 @@ ul {
     border-width: 3px;
     border-style: solid;
     padding: 15px 0px;
+    position: relative;
+    height: 425px;
+}
+
+.circle {
+    display: inline-block;
+    position: absolute;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    background: #B8A2F5;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.leftCircle {
+    left: 80px;
+}
+
+.rightCircle {
+    right: 80px;
+}
+
+.middleCircle {
+    left: 250px;
+}
+
+#displayedLocationName {
+    text-align: center;
 }

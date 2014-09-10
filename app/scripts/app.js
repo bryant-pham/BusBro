@@ -6,6 +6,8 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.transferRoute       = null;
 	$scope.currentLocation     = null;
 	$scope.destinationLocation = null;
+	$scope.displayedLocationName = null;
+	$scope.model = null;
 	$scope.locations = [
 		'McGovern', 
 		'BCM Main', 
@@ -18,12 +20,20 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.init = function() {
 		$http.get('scripts/schedule.json').success(function(data) {
 			$scope.data = data;
+			$scope.model = $scope.data.Purple[$scope.locations[0]];
+			$scope.displayedLocationName = $scope.locations[0];
 			$scope.currentRoute = initRoute($scope.data);
 			$scope.transferRoute = initRoute($scope.data);
 		});
 	};
 
 	$scope.refreshLocationOnRouteChange = function() {
+		refreshRoutes();
+		refreshModel();
+		refreshDisplayedLocationName();
+	};
+
+	var refreshRoutes = function() {
 		if($scope.data.Purple[$scope.currentLocation] && $scope.data.Purple[$scope.destinationLocation]) {
 			$scope.transferRoute = 'Purple';
 			$scope.currentRoute  = 'Purple';
@@ -49,13 +59,14 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 				$scope.transferRoute = 'Purple';
 			}
 		}
-
-		console.log('From: ' + $scope.currentRoute);
-		console.log('To: ' + $scope.transferRoute);
 	};
 
-	$scope.goToNextLocation = function(location) {
-		//$scope.currentLocation = location;
+	var refreshModel = function() {
+		$scope.model = $scope.data[$scope.currentRoute][$scope.currentLocation];
+	};
+
+	var refreshDisplayedLocationName = function() {
+		$scope.displayedLocationName = $scope.currentLocation;
 	};
 
 	$scope.hasTimePassed = function(timeString) {
@@ -73,7 +84,6 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
   		if(amOrPm === 'PM' && hoursInt < 12) {
   			hoursInt += 12;
   		}
-
   		if(currentHours > hoursInt) {
   			return true;
   		}
@@ -86,6 +96,15 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 
 	var initRoute = function(data) {
 		return Object.keys(data)[0];
+	};
+
+	$scope.changeLocation = function(location) {
+		if(!($scope.data[$scope.currentRoute][location])) {
+			$scope.model = $scope.data[$scope.transferRoute][location];
+		} else {
+			$scope.model = $scope.data[$scope.currentRoute][location];
+		}		
+		$scope.displayedLocationName = location;
 	};
 
 	$scope.init();
