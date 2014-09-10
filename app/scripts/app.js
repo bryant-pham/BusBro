@@ -4,6 +4,7 @@ var busBroApp = angular.module('busBroApp', []);
 busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.currentRoute        = null;
 	$scope.transferRoute       = null;
+	$scope.transferLocation    = null;
 	$scope.currentLocation     = null;
 	$scope.destinationLocation = null;
 	$scope.displayedLocationName = null;
@@ -35,7 +36,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 	};
 
 	var refreshRoutes = function() {
-		//Determin if locations are on the same route
+		//Determine if locations are on the same route
 		if($scope.data.Purple[$scope.currentLocation] && $scope.data.Purple[$scope.destinationLocation]) {
 			$scope.transferRoute = 'Purple';
 			$scope.currentRoute  = 'Purple';
@@ -58,6 +59,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		if(!($scope.data[$scope.currentRoute][$scope.destinationLocation])) {
 			if($scope.currentRoute === 'Purple') {
 				$scope.transferRoute = 'Blue';
+				$scope.transferLocation = $scope.data[$scope.transferRoute][$scope.destinationLocation].bestTransferLocation;
 			} else {
 				$scope.transferRoute = 'Purple';
 			}
@@ -101,12 +103,17 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		return Object.keys(data)[0];
 	};
 
-	$scope.displayCircleLocationTimes = function(location) {
+	$scope.displayLocationTimes = function(location) {
 		if(!($scope.data[$scope.currentRoute][location])) {
 			$scope.model = $scope.data[$scope.transferRoute][location];
 		} else {
 			$scope.model = $scope.data[$scope.currentRoute][location];
 		}		
+		$scope.displayedLocationName = location;
+	};
+
+	$scope.displayTransferLocationTimes = function(location) {
+		$scope.model = $scope.data[$scope.transferRoute][location];
 		$scope.displayedLocationName = location;
 	};
 

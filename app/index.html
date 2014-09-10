@@ -76,9 +76,20 @@
                             </li>
                         </ul>
                         <div id="routeContainer">
-                            <div class="circle leftCircle" ng-class="{purpleCircle: currentRoute == 'Purple', redCircle: currentRoute == 'Red', blueCircle: currentRoute == 'Blue'}" ng-click="displayCircleLocationTimes(currentLocation)"></div>
-                            <div class="circle middleCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-show="currentRoute != transferRoute"></div>
-                            <div class="circle rightCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-click="displayCircleLocationTimes(destinationLocation)"></div>
+                        	<!-- Circle divs -->
+                            <div class="circle leftCircle" 
+                            	ng-class="{purpleCircle: currentRoute == 'Purple', redCircle: currentRoute == 'Red', blueCircle: currentRoute == 'Blue'}" 
+                            	ng-click="displayLocationTimes(currentLocation)">
+                            </div>
+                            <div class="circle middleCircle" 
+                            	ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" 
+                            	ng-click="displayTransferLocationTimes(transferLocation)" 
+                            	ng-show="currentRoute != transferRoute">
+                            </div>
+                            <div class="circle rightCircle" 
+                            	ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" 
+                            	ng-click="displayLocationTimes(destinationLocation)">
+                            </div>
                         </div>
                     </div>
                     
