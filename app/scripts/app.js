@@ -101,7 +101,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		return Object.keys(data)[0];
 	};
 
-	$scope.changeLocation = function(location) {
+	$scope.displayCircleLocationTimes = function(location) {
 		if(!($scope.data[$scope.currentRoute][location])) {
 			$scope.model = $scope.data[$scope.transferRoute][location];
 		} else {
