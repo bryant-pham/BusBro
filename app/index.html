@@ -63,9 +63,9 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <div class="form-group selectBars">
-                        <select ng-init="currentLocation = locations[0]" ng-model="currentLocation" ng-options="location for location in locations" class="form-control" ng-change="refreshLocationOnRouteChange()"></select>
+                        <select ng-init="currentLocation = locations[0]" ng-model="currentLocation" ng-options="location for location in locations" class="form-control" ng-change="refreshRoutesAndTimelist()"></select>
                         <br>
-                        <select ng-init="destinationLocation = locations[1]" ng-model="destinationLocation" ng-options="location for location in locations" class="form-control" ng-change="refreshLocationOnRouteChange()"></select>
+                        <select ng-init="destinationLocation = locations[1]" ng-model="destinationLocation" ng-options="location for location in locations" class="form-control" ng-change="refreshRoutesAndTimelist()"></select>
                     </div>
                     
                     <div class="timesTable" ng-class="{purple: currentRoute == 'Purple', red: currentRoute == 'Red', blue: currentRoute == 'Blue'}">
@@ -76,9 +76,9 @@
                             </li>
                         </ul>
                         <div id="routeContainer">
-                            <div class="circle leftCircle" ng-class="{purpleCircle: currentRoute == 'Purple', redCircle: currentRoute == 'Red', blueCircle: currentRoute == 'Blue'}" ng-click="changeLocation(currentLocation)"></div>
+                            <div class="circle leftCircle" ng-class="{purpleCircle: currentRoute == 'Purple', redCircle: currentRoute == 'Red', blueCircle: currentRoute == 'Blue'}" ng-click="displayCircleLocationTimes(currentLocation)"></div>
                             <div class="circle middleCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-show="currentRoute != transferRoute"></div>
-                            <div class="circle rightCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-click="changeLocation(destinationLocation)"></div>
+                            <div class="circle rightCircle" ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" ng-click="displayCircleLocationTimes(destinationLocation)"></div>
                         </div>
                     </div>
                     

@@ -19,6 +19,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 
 	$scope.init = function() {
 		$http.get('scripts/schedule.json').success(function(data) {
+			//Init scope variables
 			$scope.data = data;
 			$scope.model = $scope.data.Purple[$scope.locations[0]];
 			$scope.displayedLocationName = $scope.locations[0];
@@ -27,13 +28,14 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		});
 	};
 
-	$scope.refreshLocationOnRouteChange = function() {
+	$scope.refreshRoutesAndTimelist = function() {
 		refreshRoutes();
 		refreshModel();
 		refreshDisplayedLocationName();
 	};
 
 	var refreshRoutes = function() {
+		//Determin if locations are on the same route
 		if($scope.data.Purple[$scope.currentLocation] && $scope.data.Purple[$scope.destinationLocation]) {
 			$scope.transferRoute = 'Purple';
 			$scope.currentRoute  = 'Purple';
@@ -44,6 +46,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 			return; 
 		}
 
+		//Determine if locations are cross-route
 		if(!($scope.data[$scope.currentRoute][$scope.currentLocation])) {
 			if($scope.currentRoute === 'Purple') {
 				$scope.currentRoute = 'Blue';
