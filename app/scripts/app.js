@@ -86,10 +86,10 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 			if(!($scope.data[$scope.currentRoute][$scope.destinationLocation])) {
 				if($scope.currentRoute === 'Purple') {
 					$scope.transferRoute = 'Blue';
-					$scope.transferLocation = $scope.data[$scope.transferRoute][$scope.destinationLocation].bestTransferLocation;
 				} else {
 					$scope.transferRoute = 'Purple';
 				}
+				$scope.transferLocation = $scope.data[$scope.transferRoute][$scope.destinationLocation].bestTransferLocation;
 			}
 		}
 		$scope.borderColor = $scope.currentRoute;
