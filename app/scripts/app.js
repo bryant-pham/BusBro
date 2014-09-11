@@ -3,12 +3,13 @@
 var busBroApp = angular.module('busBroApp', []);
 busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.currentRoute        = null;
+	$scope.currentLocation     = null;
 	$scope.transferRoute       = null;
 	$scope.transferLocation    = null;
-	$scope.currentLocation     = null;
 	$scope.destinationLocation = null;
 	$scope.displayedLocationName = null;
 	$scope.model = null;
+	$scope.borderColor = null;
 	$scope.locations = [
 		'McGovern', 
 		'BCM Main', 
@@ -26,6 +27,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 			$scope.displayedLocationName = $scope.locations[0];
 			$scope.currentRoute = initRoute($scope.data);
 			$scope.transferRoute = initRoute($scope.data);
+			$scope.borderColor = $scope.currentRoute;
 		});
 	};
 
@@ -40,10 +42,12 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		if($scope.data.Purple[$scope.currentLocation] && $scope.data.Purple[$scope.destinationLocation]) {
 			$scope.transferRoute = 'Purple';
 			$scope.currentRoute  = 'Purple';
+			$scope.borderColor = $scope.currentRoute;
 			return; 
 		} else if($scope.data.Blue[$scope.currentLocation] && $scope.data.Blue[$scope.destinationLocation]) {
 			$scope.transferRoute = 'Blue';
 			$scope.currentRoute  = 'Blue';
+			$scope.borderColor = $scope.currentRoute;
 			return; 
 		}
 
@@ -64,6 +68,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 				$scope.transferRoute = 'Purple';
 			}
 		}
+		$scope.borderColor = $scope.currentRoute;
 	};
 
 	var refreshModel = function() {
@@ -106,8 +111,11 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.displayLocationTimes = function(location) {
 		if(!($scope.data[$scope.currentRoute][location])) {
 			$scope.model = $scope.data[$scope.transferRoute][location];
+			$scope.borderColor = $scope.transferRoute;
 		} else {
 			$scope.model = $scope.data[$scope.currentRoute][location];
+			$scope.borderColor = $scope.currentRoute;
+
 		}		
 		$scope.displayedLocationName = location;
 	};
@@ -115,6 +123,7 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 	$scope.displayTransferLocationTimes = function(location) {
 		$scope.model = $scope.data[$scope.transferRoute][location];
 		$scope.displayedLocationName = location;
+		$scope.borderColor = $scope.transferRoute;
 	};
 
 	$scope.init();
