@@ -27,7 +27,6 @@ ul {
 }
 
 .navbar {
-
 	text-align: center;
 	padding: 5px;
 }
@@ -75,6 +74,7 @@ ul {
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
+    cursor: pointer;
 }
 
 .center {
@@ -96,4 +96,40 @@ ul {
 
 #displayedLocationName {
     text-align: center;
+}
+
+.route-line-left {
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    position: absolute;
+    z-index: -1;
+    width: 34%;
+    left: 16%;
+    top: 22px;
+}
+
+.route-line-right {
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    position: absolute;
+    z-index: -1;
+    width: 34%;
+    right: 16%;
+    top: 22px;
+}
+
+#routeCircleContainer {
+    position: relative;
+}
+
+.purpleRouteLine {
+    border-bottom-color: #B8A2F5;
+}
+
+.redRouteLine {
+    border-bottom-color: #FF5252;
+}
+
+.blueRouteLine {
+    border-bottom-color: #5487FF;
 }
