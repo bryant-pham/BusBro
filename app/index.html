@@ -83,6 +83,7 @@
 		                            	ng-class="{purpleCircle: currentRoute == 'Purple', redCircle: currentRoute == 'Red', blueCircle: currentRoute == 'Blue'}" 
 		                            	ng-click="displayLocationTimes(currentLocation)">
 		                            </div>
+		                            <div>{{currentLocation}}</div>
 		                        </div>
 		                        <div class="col-md-4 col-sm-4 col-xs-4 center">
 		                            <div id="middleCircle" class="circle" 
@@ -90,12 +91,14 @@
 		                            	ng-click="displayTransferLocationTimes(transferLocation)" 
 		                            	ng-show="currentRoute != transferRoute">
 		                            </div>
+		                            <div ng-show="currentRoute != transferRoute">{{transferLocation}}</div>
 		                        </div>
 	                            <div class="col-md-4 col-sm-4 col-xs-4 center">
 		                            <div id="rightCircle" class="circle" 
 		                            	ng-class="{purpleCircle: transferRoute == 'Purple', redCircle: transferRoute == 'Red', blueCircle: transferRoute == 'Blue'}" 
 		                            	ng-click="displayLocationTimes(destinationLocation)">
 		                            </div>
+		                            <div>{{destinationLocation}}</div>
 		                        </div>
                             </div>
                         </div>

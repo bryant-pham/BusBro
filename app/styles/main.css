@@ -68,9 +68,8 @@ ul {
 
 .circle {
     display: inline-block;
-    position: absolute;
     margin-top: 30px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -80,6 +79,7 @@ ul {
 
 .center {
     text-align: center;
+    font-size: 12px;
 }
 
 .purpleCircle {
