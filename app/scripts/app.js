@@ -43,8 +43,11 @@ busBroApp.controller('busBroCtrl', function($scope, $http) {
 		var currentHour = currentTime.getHours();
 		var currentMinute =  currentTime.getMinutes();
 
+		//Convert time to minutes elapsed in day
+		var convertedTime = (currentHour * 60) + currentMinute;
+
 		//Force red route if between 12:00AM - 8:20AM and after 4:41PM
-		if((currentHour >= 0 && (currentHour <= 8 && currentMinute <= 20)) || (currentHour >= 16 && currentMinute >= 41)) {
+		if((convertedTime >= 0 && convertedTime <= 500) || (convertedTime >= 1001)) {
 			return true;
 		}
 		return false;
