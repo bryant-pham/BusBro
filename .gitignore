@@ -1,8 +1,6 @@
-node_modules
 .sass-cache
 dist
 .tmp
-node_modules
 LICENSE
 .editorconfig
 .jshintrc
